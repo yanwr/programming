@@ -1,5 +1,6 @@
 package com.programming.injava.hackerRank.dataStructures.trees;
 
+import com.programming.injava.hackerRank.dataStructures.trees.nodes.Node;
 import org.springframework.boot.SpringApplication;
 import java.util.Scanner;
 
@@ -51,15 +52,5 @@ public class HeightOfABinaryTree {
     private static int getHeight(Node root) {
         if(root == null) return -1;
         return 1 + Math.max(getHeight(root.left), getHeight(root.right));
-    }
-
-    static class Node {
-        private int value;
-        private Node left = null;
-        private Node right = null;
-
-        public Node(int value) {
-            this.value = value;
-        }
     }
 }

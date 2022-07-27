@@ -1,22 +1,14 @@
 package com.programming.injava.hackerRank.dataStructures.trees;
 
+import com.programming.injava.hackerRank.dataStructures.trees.nodes.Node;
+import com.programming.injava.hackerRank.dataStructures.trees.nodes.NodeUtil;
 import org.springframework.boot.SpringApplication;
-
 import java.util.LinkedList;
 import java.util.Scanner;
 
 // Get the Node and transfer to Array of Integer from left to rigth in Tree
 public class LevelOrderTraversal {
     // URL = https://www.hackerrank.com/challenges/tree-level-order-traversal/problem?isFullScreen=true
-    static class Node {
-        private int value;
-        private Node left = null;
-        private Node right = null;
-
-        public Node(int value) {
-            this.value = value;
-        }
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(LevelOrderTraversal.class, args);
@@ -31,15 +23,15 @@ public class LevelOrderTraversal {
 
         Node root = null;
         for(int i = 0; i < nodes.length; i++) {
-            root = insert(root, nodes[i]);
+            root = NodeUtil.insert(root, nodes[i]);
         }
 
         System.out.println("Response = ");
         levelOrder(root);
     }
 
-    private static void levelOrder(Node root) {
-        int height = getHeight(root);
+    public static void levelOrder(Node root) {
+        int height = NodeUtil.getHeight(root);
         for(int i = 1; i <= height + 1; i++) {
             levelOrderByLevel(root, i);
         }
@@ -53,25 +45,6 @@ public class LevelOrderTraversal {
             levelOrderByLevel(node.left, level - 1);
             levelOrderByLevel(node.right, level - 1);
         }
-    }
-
-    private static int getHeight(Node root) {
-        if(root == null) return -1;
-        return 1 + Math.max(getHeight(root.left), getHeight(root.right));
-    }
-
-    private static Node insert(Node current, int value) {
-        if(current == null) return new Node(value);
-
-        if(value < current.value) {
-            current.left = insert(current.left, value);
-        } else if (value > current.value) {
-            current.right = insert(current.right, value);
-        } else {
-            return current;
-        }
-
-        return current;
     }
 
     // another way to do in Java
@@ -106,5 +79,4 @@ public class LevelOrderTraversal {
             }
         }
     }
-
 }
